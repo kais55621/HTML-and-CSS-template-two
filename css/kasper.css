@@ -952,6 +952,7 @@ header nav .form i{
     width: fit-content;
     margin: 30px auto;
     text-decoration: none;
+    color: inherit;
 }
 
 .pricing .container .contact-text {
