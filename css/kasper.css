@@ -4,6 +4,7 @@
     --transparent-color:rgb(15 116 143 / 70%);
     --section-padding:100px;
     --paragraph-color:#777;
+    --transition-duration:0.5s;
 }
 /* End Variables */
 /* Start Global Rules */
@@ -288,12 +289,17 @@ header nav .form i{
 
 .landing .right-arrow {
     right: 30px;
+    transition: var(--transition-duration);
 }
 
 .landing .left-arrow {
     left: 30px;
+    transition: var(--transition-duration);
 }
 
+.landing .left-arrow:hover , .landing .right-arrow:hover {
+    color: var(--main-color);
+}
 .landing .bullets {
     position: absolute;
     bottom: 30px;
@@ -359,8 +365,20 @@ header nav .form i{
         grid-row-gap:60px ;
     }
 }
+
 .services .srv-box {
     display: flex;
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 10px;
+    transition: var(--transition-duration);
+}
+
+.services .srv-box:hover {
+    transform: scale(1.02);
+    -moz-box-shadow: 0px 6px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    -webkit-box-shadow: 0px 6px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 6px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
 }
 
 .services .srv-box i {
@@ -544,8 +562,12 @@ header nav .form i{
     margin: 30px auto;
     text-decoration: none;
     text-transform: uppercase;
+    transition: var(--transition-duration);
 }
 
+.portfolio .more:hover {
+    background-color: #05b5e6;
+}
 /* End Portfolio */
 /* Start Video  */
 .video {
@@ -596,6 +618,11 @@ header nav .form i{
     text-transform: uppercase;
     border: none;
     cursor:pointer;
+    transition: var(--transition-duration);
+}
+
+.video .text button:hover {
+    transform: scale(1.05);
 }
 /* End Video  */
 /* Start About */
@@ -708,10 +735,91 @@ header nav .form i{
 }
 
 .our-skills .container > div > h3 {
-    margin: 0 0 30px;
+    margin: 0 auto 30px;
     font-weight: normal;
     text-align: center;
     text-transform: uppercase;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    border: 1px solid black;
+    z-index: 1;
+    transition: 0.8s;
+}
+
+.our-skills .container > div > h3:hover {
+    color: white;
+    animation: fill linear both 0.5s;
+}
+
+@keyframes fill {
+    80% {
+        border: 1px solid black;
+    }
+    100% {
+        border-color: var(--main-color);
+    }
+}
+
+.our-skills .container > div > h3::before,.our-skills .container > div > h3::after  {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: var(--transition-duration);
+    z-index: -1;
+}   
+
+.our-skills .container > div > h3::before {
+    left: -20px;
+} 
+
+.our-skills .container > div > h3::after {
+    right: -20px;
+}
+
+.our-skills .container > div > h3:hover::before {
+    animation: fill-left-dot linear both 0.4s;
+}
+
+.our-skills .container > div > h3:hover::after {
+    animation: fill-right-dot linear both 0.4s;
+}
+
+@keyframes fill-right-dot {
+    50% {
+        right: 0;
+    }
+    80% {
+        width: 40%;
+    }
+    100% {
+        width: 60%;
+        height: 100%;
+        border-radius: 5px;
+        right: 0;
+    }
+}
+
+@keyframes fill-left-dot {
+    50% {
+        left: 0;
+    }
+    80% {
+        width: 40%;
+        height: 100%;
+    }
+    100% {
+        width: 60%;
+        height: 100%;
+        border-radius: 5px;
+        left: 0;
+    }
 }
 
 .our-skills .container > div > p {
@@ -889,10 +997,18 @@ header nav .form i{
 .pricing .container .plans .plan {
     background-color: #fcfcfc;
     text-align: center;
+    border: 1px solid #eee;
+    -moz-box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    -webkit-box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    transition: var(--transition-duration);
+}
+
+.pricing .container .plans .plan:hover {
+    transform: translateY(-10px);
 }
 
 .pricing .container .plans .plan .head {
-    border-top: 1px solid var(--main-color);
     border-bottom: 1px solid var(--main-color);
     padding: 40px 20px;
 }
@@ -953,6 +1069,33 @@ header nav .form i{
     margin: 30px auto;
     text-decoration: none;
     color: inherit;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-duration);
+}
+
+.pricing .container .plans .plan .foot a:hover {
+    color: white;
+}
+
+.pricing .container .plans .plan .foot a::before {
+    content: "";
+    background-color: var(--main-color);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    z-index: -1;
+    transition: var(--transition-duration);
+    opacity: 0;
+}
+
+.pricing .container .plans .plan .foot a:hover::before{
+    height: 100%;
+    width: 100%;
+    opacity: 1;
 }
 
 .pricing .container .contact-text {
@@ -969,6 +1112,11 @@ header nav .form i{
     margin: 20px auto;
     text-decoration: none;
     width: fit-content;
+    transition: var(--transition-duration);
+}
+
+.pricing .container .contact-link:hover {
+    background-color: #05b5e6;
 }
 /* End Pricing */
 /* Start Subscribe */
@@ -1001,7 +1149,6 @@ header nav .form i{
     .subscribe .container {
         flex-direction: column;
     }
-
 }
 
 .subscribe .container form {
@@ -1040,6 +1187,12 @@ header nav .form i{
     padding: 10px 20px;
     border-left: none;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-duration);
+}
+
+.subscribe .container input[type=submit]:hover {
+    background-color: #05b5e6;
 }
 
 .subscribe .container form ::placeholder {
@@ -1103,9 +1256,14 @@ header nav .form i{
     padding: 20px;
     border: none;
     text-transform: uppercase;
-    margin-left: auto;
+    margin: 0 auto;
     cursor: pointer;
     display: flex;
+    transition: var(--transition-duration);
+}
+
+.contact-us .content form input[type=submit]:hover {
+    background-color: #05b5e6;
 }
 
 .contact-us .content .info {
@@ -1195,6 +1353,23 @@ header nav .form i{
 .footer .container .social-icons i {
     padding: 10px 0;
     margin: 0 12px;
+    transition: var(--transition-duration);
+}
+
+.footer .container .social-icons i.facebook:hover {
+    color: #1877f2;
+}
+
+.footer .container .social-icons i.twitter:hover {
+    color: #1da1f2;
+}
+
+.footer .container .social-icons i.home:hover {
+    color: var(--main-color);
+}
+
+.footer .container .social-icons i.linkedin:hover {
+    color: #0a66c2;
 }
 
 .footer .container .copyright {
